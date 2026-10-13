@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f3f0e8;
+  --surface: #fffcf8;
+  --surface-2: #f6f3ec;
+  --ink: #1c1915;
+  --muted: #655f56;
+  --line: #e4dcd0;
+  --accent: #0d6b45;
+  --accent-ink: #f7fffb;
+  --accent-soft: #e5f4ec;
+  --warn: #8a5a12;
+  --warn-soft: #f8efd9;
+  --danger: #9d3030;
+  --danger-soft: #f8e7e4;
+  --info: #1d4e73;
+  --info-soft: #e6eef5;
+  --shadow: 0 1px 2px rgb(28 25 21 / 0.05), 0 10px 28px rgb(28 25 21 / 0.05);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #111311;
+  --surface: #191c19;
+  --surface-2: #21251f;
+  --ink: #f4f1ea;
+  --muted: #b2aaa0;
+  --line: #31362f;
+  --accent: #3dba84;
+  --accent-ink: #062216;
+  --accent-soft: #173528;
+  --warn: #e2b15a;
+  --warn-soft: #3a2e16;
+  --danger: #f0a8a4;
+  --danger-soft: #3c1e1d;
+  --info: #a9cbe4;
+  --info-soft: #172a36;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
+  --shadow-card: var(--shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .print-sheet { box-shadow: none !important; border: 0 !important; }
 }
